@@ -9,7 +9,10 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 
 ## Paper
 
-- `paper/Frohman_Residual_Surface_Preprint_2026.tex` — compile with `pdflatex` twice. Source of the 4-page note.
+- `paper/Frohman_Residual_Surface_Preprint_2026.tex` — official residual-surface note. `pdflatex` twice.
+- `paper/Frohman_Host_Ideals_2026.tex`
+- `paper/Frohman_Determinantal_Correction_2026.tex`
+- `ARTIFACTS.md` — full local-tree inventory vs this repo. PDFs are local-only.
 
 ## Start here
 
@@ -28,3 +31,4 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 
 Sister record: [BenFrohman/HODGE](https://github.com/BenFrohman/HODGE).
 HODGE `main` is ruleset-locked; this repo is the write target for the residual-surface pass.
+NS memoirs from the local tree are listed in `ARTIFACTS.md` and belong in [NS_Millennium_Proof](https://github.com/BenFrohman/NS_Millennium_Proof).
