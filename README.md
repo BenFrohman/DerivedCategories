@@ -7,6 +7,10 @@ Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0. See `LICENSE`.
 
 Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 
+## Paper
+
+- `paper/Frohman_Residual_Surface_Preprint_2026.tex` — compile with `pdflatex` twice. Source of the 4-page note.
+
 ## Start here
 
 - `docs/FINDINGS.md` — what is locked this pass
