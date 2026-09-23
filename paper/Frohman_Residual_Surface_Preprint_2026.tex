@@ -1,1 +1,158 @@
-PLACEHOLDER
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{A plane on a sextic Calabi--Yau fourfold\\and its residual quintics}
+\author{Benjamin Stanley Frohman\\Independent researcher}
+\date{23 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+F=x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6,\qquad
+X=V(F)\subset\mathbb{P}^5,\qquad
+\Pi=V(x_3,x_4,x_5).
+\]
+Then \(X\) is a smooth Calabi--Yau fourfold containing the coordinate plane \(\Pi\). Projection from \(\Pi\) yields a family of residual quintic surfaces \(S\subset X\). For a general parameter the surface \(S\) is smooth of general type, \(K_S\simeq\mathcal{O}_S(1)\), and \([S]=h^2-[\Pi]\) in \(H^4(X)\). Intersection numbers on \(X\) are computed from the normal bundle of \(\Pi\). The note records what this geometry does and does not imply: it is not a Fourier--Mukai partner fourfold, not a disproof of the Hodge conjecture, and not a Clay counterexample.
+\end{abstract}
+
+\section{The host}
+
+Write \(h=c_1(\mathcal{O}_X(1))\). The polynomial \(F\) is homogeneous of degree \(6\), so \(X\) is a sextic hypersurface in \(\mathbb{P}^5\). Adjunction gives
+\[
+K_X=\mathcal{O}_X(6-5-1)=\mathcal{O}_X.
+\]
+The partials of \(F\) vanish simultaneously only at the origin in \(\mathbb{A}^6\), so \(X\) is smooth. Thus \(X\) is a Calabi--Yau fourfold. Standard Hodge numbers of a smooth sextic fourfold are
+\[
+h^{4,0}=1,\qquad h^{3,1}=426,\qquad h^{2,2}=1752.
+\]
+The Lefschetz hyperplane theorem gives \(\operatorname{Pic}(X)=\mathbb{Z}h\). The plane \(\Pi\) lies on \(X\) because \(F\in\langle x_3,x_4,x_5\rangle\). Ledger:
+\[
+I(X)=\langle F\rangle,\qquad I(\Pi)=\langle x_3,x_4,x_5\rangle.
+\]
+The class \([\Pi]\) is algebraic. This is the easy Hodge arrow for one class on one fourfold, not the statement \(\forall X\,\forall\gamma\,\exists Z_i\).
+
+\section{Residual quintics}
+
+A point \([a:b:c]\in\mathbb{P}^2\) determines the linear \(\mathbb{P}^3\)
+\[
+L_{a,b,c}=\bigl\{[x_0:x_1:x_2:ta:tb:tc]\bigr\}.
+\]
+Its ideal in \(\mathbb{P}^5\) is the \(2\times 2\) minors of \(\begin{pmatrix}x_3&x_4&x_5\\ a&b&c\end{pmatrix}\):
+\[
+I(L)=\langle bx_3-ax_4,\; cx_3-ax_5,\; cx_4-bx_5\rangle.
+\]
+Restriction of \(F\) factors as
+\[
+F\big|_{L}=t\bigl(ax_0^5+bx_1^5+cx_2^5+t^5(a^6+b^6+c^6)\bigr).
+\]
+Write \(\mu=a^6+b^6+c^6\) and
+\[
+R_{a,b,c}=ax_0^5+bx_1^5+cx_2^5+t^5\mu\in\mathbb{C}[x_0,x_1,x_2,t]_5,
+\qquad
+S=V(R)\subset L.
+\]
+The factor \(t=0\) is \(\Pi\). The residual is \(S\). Thus \(X\cap L=\Pi\cup S\) and \(S\subset X\).
+
+\begin{theorem}[Residual quintics of \((F,\Pi)\)]
+If \(abc\mu\neq 0\), then \(S\) is a smooth quintic surface in \(L\cong\mathbb{P}^3\), of general type, with \(K_S\simeq\mathcal{O}_S(1)\) very ample, and
+\[
+[S]=h^2-[\Pi]\quad\text{in }H^4(X).
+\]
+\end{theorem}
+
+\begin{proof}
+The identity \(F|_L=tR\) is polynomial. The partials of \(R\) are
+\[
+5ax_0^4,\quad 5bx_1^4,\quad 5cx_2^4,\quad 5t^4\mu.
+\]
+If \(abc\mu\neq 0\) these vanish only at the origin, so \(S\) is smooth. Adjunction in \(\mathbb{P}^3\) gives \(K_S=\mathcal{O}_S(5-4)=\mathcal{O}_S(1)\). That line bundle is the hyperplane class of the given embedding, hence very ample, and \(S\) is of general type. A linear \(\mathbb{P}^3\) cuts \(X\) in class \(h^2\). Additivity of cycles on \(X\cap L=\Pi\cup S\) gives \([S]=h^2-[\Pi]\).
+\end{proof}
+
+If \(\mu=0\) and \(abc\neq 0\), then \(R\) is a cone, singular at \([0:0:0:1]\). The discriminant in the base therefore contains the Fermat sextic \(a^6+b^6+c^6=0\) (genus \(10\)).
+
+\section{Intersections}
+
+Smooth inclusions \(\Pi\subset X\subset\mathbb{P}^5\) give
+\[
+0\to N_{\Pi/X}\to N_{\Pi/\mathbb{P}^5}\to N_{X/\mathbb{P}^5}\big|_{\Pi}\to 0,
+\]
+with \(N_{\Pi/\mathbb{P}^5}=\mathcal{O}_\Pi(1)^{\oplus 3}\) and \(N_{X/\mathbb{P}^5}|_\Pi=\mathcal{O}_\Pi(6)\). On \(\Pi\),
+\[
+\frac{\partial F}{\partial x_3}=x_0^5,\quad
+\frac{\partial F}{\partial x_4}=x_1^5,\quad
+\frac{\partial F}{\partial x_5}=x_2^5,
+\]
+so the map \(\mathcal{O}(1)^3\to\mathcal{O}(6)\) is \((s_3,s_4,s_5)\mapsto x_0^5 s_3+x_1^5 s_4+x_2^5 s_5\), surjective on \(\Pi\). Whitney:
+\[
+c(N_{\Pi/X})=\frac{(1+L)^3}{1+6L}=(1+3L+3L^2)(1-6L+36L^2)=1-3L+21L^2
+\]
+on \(\mathbb{P}^2\). Hence \(c_1(N)=-3L\) and \(c_2(N)=21\). For a surface in a fourfold, \(Z^2=\int_Z c_2(N_{Z/X})\), so \(\Pi^2=21\). Combined with \(h^4=6\) and \(h^2\cdot[\Pi]=1\),
+\begin{align*}
+[S]\cdot h^2&=6-1=5,\\
+[S]\cdot[\Pi]&=1-21=-20,\\
+[S]^2&=6-2+21=25.
+\end{align*}
+The curve \(C=\Pi\cap S\) is \(ax_0^5+bx_1^5+cx_2^5=0\subset\Pi\cong\mathbb{P}^2\). If \(abc\neq 0\) it is a smooth plane quintic of genus \(6\).
+
+A smooth quintic surface in \(\mathbb{P}^3\) has \(K_S^2=5\). From
+\[
+0\to\mathcal{O}_{\mathbb{P}^3}(-5)\to\mathcal{O}_{\mathbb{P}^3}\to\mathcal{O}_S\to 0
+\]
+one has \(\chi(\mathcal{O}_{\mathbb{P}^3})=1\) and, by Serre duality, \(\chi(\mathcal{O}(-5))=-4\), so \(\chi(\mathcal{O}_S)=5\). Then \(p_g=h^0(\mathcal{O}_S(1))=4\), \(q=0\), Noether gives \(e(S)=55\), and \(b_2=53\), \(h^{1,1}=45\).
+
+These classes remain in the span of \(\{h^2,[\Pi]\}\). No new independent Hodge class is produced.
+
+\section{Derived categories}
+
+Write \(D^b(Z)\) for the bounded derived category of coherent sheaves. Orlov's theorem for a Calabi--Yau hypersurface supplies
+\[
+D^b(\operatorname{coh} X)\;\simeq\;\operatorname{HMF}^{\mathrm{gr}}(F).
+\]
+This is an equivalence of \(4\)-Calabi--Yau categories attached to the same polynomial. It is not a second fourfold.
+
+A derived equivalence \(D^b(A)\simeq D^b(B)\) of smooth projective varieties is, by Orlov representability, Fourier--Mukai: there is a kernel \(\mathcal{E}\in D^b(A\times B)\). Bondal--Orlov reconstruction says that if \(K\) or \(K^{-1}\) is ample then the variety is recovered from \(D^b\). Thus \(D^b(S)\) reconstructs \(S\), while \(D^b(X)\) does not reconstruct \(X\) because \(K_X\simeq\mathcal{O}\). Moreover \(\dim S=2\neq 4=\dim X\), and the Serre functors are \((-\otimes K_S)[2]\) and \([4]\) respectively. So \(S\) is not a Fourier--Mukai partner of \(X\).
+
+The blowup \(\mathrm{Bl}_\Pi X\) has \(K=2E\not\simeq\mathcal{O}\). It is not Calabi--Yau and is not a partner.
+
+\begin{conjecture}[FM partner of \(V(F)\)]
+There exist a smooth projective fourfold \(Y\not\simeq X\) with \(\omega_Y\simeq\mathcal{O}_Y\) and a kernel \(\mathcal{E}\in D^b(X\times Y)\) such that \(\Phi_{\mathcal{E}}\) is an equivalence \(D^b(X)\xrightarrow{\sim}D^b(Y)\).
+\end{conjecture}
+
+This remains open. A partner is a variety plus a kernel plus a proof. None of those three is written for this \(F\).
+
+\section{What this note is not}
+
+Hodge on fourfolds asks: for every smooth projective fourfold and every class \(\gamma\in H^{2,2}\cap H^4(\mathbb{Q})\), do surfaces \(Z_i\) exist with \(\gamma=\sum a_i[Z_i]\)? A Clay counterexample is one named fourfold and one named Hodge class with a proof that no such surfaces exist.
+
+On this \(X\), \([\Pi]\) and \([S]\) are algebraic. Those pairs \((X,[\Pi])\) and \((X,[S])\) are instances of the conjecture, not witnesses against it. A missing Lean instance is neither a proof of Hodge nor a counterexample. The blowup \(\mathrm{Bl}_\Pi X\) is a different fourfold; classes there do not disprove Hodge on \(X\).
+
+Derived equivalences do not turn \([\Pi]\) or \([S]\) into Mukai vectors. This host has \(h^{3,1}=426\) and no Kuznetsov K3 component.
+
+\section{Ledger}
+
+\begin{center}
+\begin{tabular}{ll}
+\(X=V(F)\) & locked CY fourfold\\
+\(\Pi\) & locked plane on \(X\)\\
+\(S=S_{a,b,c}\) & residual quintic surface on \(X\)\\
+\(Y\) & unwritten\\
+\(D^b(X)\simeq\operatorname{HMF}^{\mathrm{gr}}(F)\) & same host\\
+\end{tabular}
+\end{center}
+
+Companion files: \texttt{BenFrohman/DerivedCategories}, draft of 23 September 2026.
+
+\end{document}
