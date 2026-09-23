@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\title{Correction: Ideals, Self-Intersection, and What Is Not Sealed}
+\date{22 September 2026}
+
+\begin{document}
+\maketitle
+
+\section{The plane and the host, aligned with the latest generators}
+
+If
+\[
+I(\Pi)=(x_3,x_4,x_5)\subset\mathbb{C}[x_0,\ldots,x_5],
+\]
+then $\Pi=\mathbb{V}(x_3,x_4,x_5)$. A sextic containing that plane has the form
+\[
+F=x_3A+x_4B+x_5C,\qquad A,B,C\in\mathbb{C}[x_0,\ldots,x_5]_5,\qquad X=\mathbb{V}(F).
+\]
+(The opposite convention $I(\Pi)=(x_0,x_1,x_2)$ and $F=x_0A+x_1B+x_2C$ is the same geometry after relabelling. The two conventions must not be mixed in one formula.)
+
+\section{The number $21$ is not a new class}
+
+For a linear plane $\Pi\simeq\mathbb{P}^2$ on a smooth hypersurface fourfold $X\subset\mathbb{P}^5$ of degree $d$,
+\[
+0\to N_{\Pi/X}\to\mathcal{O}_\Pi(1)^{\oplus 3}\to\mathcal{O}_\Pi(d)\to 0,
+\]
+hence
+\[
+\Pi^2=\deg c_2(N_{\Pi/X})=d^2-3d+3.
+\]
+For $d=6$,
+\[
+\Pi^2=36-18+3=21.
+\]
+That identity holds for every linear plane on every smooth sextic fourfold that contains one. It does not distinguish an extra class from the hyperplane powers, and it does not establish priority. The comparison $21\neq\tfrac16$ is not an intersection-theoretic test: $\tfrac16$ is not the self-intersection of a linear plane on $X$.
+
+On a cubic fourfold one has $\Pi^2=3$ and $h^{2,2}(X)=21$. Those two twenties-one must not be identified.
+
+\section{The pair on the split quadric}
+
+\[
+\begin{aligned}
+I(\Pi')&=(x_0,x_1,x_2),\\
+I(Q^4)&=(x_0x_5+x_1x_4+x_2x_3),
+\end{aligned}
+\]
+with both $\Pi$ and $\Pi'$ contained in $Q^4$. This is one pair of planes from the two rulings of the split quadric. It is classical.
+
+\section{The determinantal template does not lock $\eta_{F,l}$}
+
+A $2\times 3$ matrix of unspecified forms
+\[
+M=\begin{pmatrix}f_{11}&f_{12}&f_{13}\\ f_{21}&f_{22}&f_{23}\end{pmatrix}
+\]
+produces
+\[
+I(S)=(g_1,g_2,g_3),\qquad
+g_1=f_{11}f_{22}-f_{12}f_{21},\;
+g_2=f_{12}f_{23}-f_{13}f_{22},\;
+g_3=f_{11}f_{23}-f_{13}f_{21}.
+\]
+Expected codimension of the $2\times 2$ minors of a $2\times 3$ matrix is $2$. That is a scheme-theoretic template, not a named surface. Until the six entries are fixed as concrete homogeneous polynomials, $I(S)$ is not a single ideal, $S\cap X$ is not a single cycle, and $\mathrm{cl}(S)$ is not a class. Adding a generic linear form $L$ yields a template for a curve, with the same defect.
+
+The structure
+\[
+\texttt{associated\_class : True},\qquad \texttt{hodge\_number : $\mathbb{N}$}
+\]
+does not assign a residue or a Hodge number. $\mathtt{True}$ is the unit type. $\mathbb{N}$ is an uncomputed integer.
+
+\section{Spacetime is not this locus}
+
+Anti-self-dual Yang--Mills on $\mathbb{R}^3\times\mathbb{R}$, Donaldson--Casson invariants, and non-abelian Hodge theory on curves are separate theories. They do not embed $\mathbb{R}^3\times\mathbb{R}$ as a closed subvariety of a sextic fourfold in $\mathbb{P}^5$, and they do not identify an instanton with $[\Pi]$ or with $I(S)$. Navier--Stokes vorticity on $\mathbb{T}^3\times[0,T_*)$ is a further distinct equation.
+
+\section{What remains locked, and only this}
+
+\[
+I(\Pi)=(x_3,x_4,x_5),\qquad
+I(\Pi')=(x_0,x_1,x_2),\qquad
+I(Q^4)=(x_0x_5+x_1x_4+x_2x_3).
+\]
+A sextic host containing $\Pi$ is any irreducible $F=x_3A+x_4B+x_5C$. The determinantal generators become a locus only after $f_{11},\ldots,f_{23}$ are named. Until then $\eta_{F,l}$ has no cycle class and no Hodge number.
+
+\end{document}
