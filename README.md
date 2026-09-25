@@ -20,6 +20,8 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 - `docs/LOCKED_RECORD.md` — host, CY, ledger
 - `docs/THEOREM_RESIDUAL_SURFACE.md` — official theorem about the surface S
 - `docs/DERIVED_SURFACES.md` — D^b(S) vs D^b(X) vs D^b(Y); S is not Y
+- `docs/DERIVED_EQUIVALENCE_AND_MIRRORS.md` — FM equivalence vs HMS; BHK transpose is not Y
+- `docs/DB_Y.md` — type of a written partner; inhabitant empty
 - `docs/Y_AND_MISS.md` — partner Y and Term B stay named and empty
 - `docs/RESIDUAL_QUINTICS.md` — family and smoothness
 - `docs/INTERSECTIONS.md` — full work: Pi^2, [S], pairings, C, chi(O_S)
@@ -29,8 +31,8 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 - `docs/CONJECTURE_FM_PARTNER.md` — open partner conjecture
 - `docs/CUBIC_KUZNETSOV.md` — cubic dictionary does not apply to V(F)
 - `lean/FmPartnerConjecture.lean` — `fmPartnerStatus = .openConjecture`
+- `lean/WrittenPartner.lean` — six-field type; rejects S, HMF, O_Delta
 - `lean/ResidualIdentity.lean` — sample checks of F|_L = t R
 
 Sister record: [BenFrohman/HODGE](https://github.com/BenFrohman/HODGE).
 HODGE `main` is ruleset-locked; this repo is the write target for the residual-surface pass.
-NS memoirs from the local tree are listed in `ARTIFACTS.md` and belong in [NS_Millennium_Proof](https://github.com/BenFrohman/NS_Millennium_Proof).
