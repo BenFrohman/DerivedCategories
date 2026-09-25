@@ -16,6 +16,9 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 
 ## Start here
 
+- `docs/STANDALONE_LEAN.md` — what “import would break a standalone file” means
+- `docs/SYMBOLS.md` — F / F^T are CS strings; (2,2)-class; Hdg^2; Term A / Term B
+- `docs/S_FAMILY.md` — family S_{a,b,c}; pairings from [S]=h^2-[Pi]; rank 2; not \u2200D
 - `docs/BHK_CONSTRUCTION.md` — invertible F, chain blocks, A^T, dual weights P(3,2,3,2,3,2); F^T is a BHK *candidate string*, not Y
 - `docs/RESIDUAL_NUMERALS.md` — locked intersections on V(F)
 - `docs/FINDINGS.md` — what is locked this pass
@@ -38,7 +41,7 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 - `lean/BHK.lean` — exponent matrix, det 27000, dual weights 3+2, dT=15
 - `lean/Equations.lean` — F, FT, F_ne_FT
 - `lean/Intersections.lean` — residual numerals, sorry-free
-- `lean/SMore.lean` — span rank 2
+- `lean/SMore.lean` — span rank 2, standalone (no project import)
 - `lean/FmPartnerConjecture.lean` — `fmPartnerStatus = .openConjecture`
 - `lean/WrittenPartner.lean` — six-field type; rejects S, HMF, O_Delta
 - `lean/ResidualIdentity.lean` — sample checks of F|_L = t R
