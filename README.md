@@ -19,11 +19,13 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 - `docs/FINDINGS.md` — what is locked this pass
 - `docs/LOCKED_RECORD.md` — host, CY, ledger
 - `docs/THEOREM_RESIDUAL_SURFACE.md` — official theorem about the surface S
+- `docs/DERIVED_SURFACES.md` — D^b(S) vs D^b(X) vs D^b(Y); S is not Y
+- `docs/Y_AND_MISS.md` — partner Y and Term B stay named and empty
 - `docs/RESIDUAL_QUINTICS.md` — family and smoothness
-- `docs/INTERSECTIONS.md` — full work: Π², [S], pairings, C, χ(O_S)
-- `docs/WRITTEN_OBJECTS.md` — I(L), discriminant, χ(O_S)
+- `docs/INTERSECTIONS.md` — full work: Pi^2, [S], pairings, C, chi(O_S)
+- `docs/WRITTEN_OBJECTS.md` — I(L), discriminant, chi(O_S)
 - `docs/DERIVED_EQUIVALENCES.md` — equivalences; why S is not Y
-- `docs/TRICHOTOMY_NOTE.md` — blowup is not Y and not ¬Hodge
+- `docs/TRICHOTOMY_NOTE.md` — blowup is not Y and not not-Hodge
 - `docs/CONJECTURE_FM_PARTNER.md` — open partner conjecture
 - `docs/CUBIC_KUZNETSOV.md` — cubic dictionary does not apply to V(F)
 - `lean/FmPartnerConjecture.lean` — `fmPartnerStatus = .openConjecture`
