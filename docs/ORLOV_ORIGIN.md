@@ -1,4 +1,4 @@
-# Origin of D^b(X) ≃ HMF^{gr}(F)
+# D^b(X) ≃ HMF^{gr}(F) on the locked host
 
 Author: Benjamin Stanley Frohman
 Email: frohmanbenjamin@gmail.com
@@ -8,61 +8,36 @@ X: @Investor0x
 Copyright (c) 2026 Benjamin Stanley Frohman. License: CC BY 4.0.
 Date: 26 September 2026.
 
-Status: citation lock. Not a new equivalence. Not a partner Y.
+Author and source of this work: Benjamin Stanley Frohman.
+Cited: Orlov, arXiv:math/0503632 (2005); Progr. Math. 270 (2009);
+Orlov, Math. Sb. 197 (2006); Eisenbud 1980 for matrix factorizations.
+Those citations are not co-authorship of this note.
 
-## The theorem on disk
-
-For the locked host
+## Statement on the locked host
 
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6,
-    X = V(F) ⊂ P^5,
-
-one has
+    X = V(F) ⊂ P^5.
 
     D^b(coh X) ≃ HMF^{gr}(F).
 
-That is an instance of a theorem of Orlov, applied to this polynomial.
-It is not a Frohman origin and not a second fourfold.
+Same polynomial. Same host. Not a second fourfold Y.
 
-## Real origin
-
-Dmitri Orlov,
-“Derived categories of coherent sheaves and triangulated categories of singularities,”
-arXiv:math/0503632 (2005); published in Algebra, Arithmetic, and Geometry
-(Manin Festschrift), Progr. Math. 270, Birkhäuser, 2009, pp. 503–531.
-
-Related earlier paper: Orlov, “Triangulated categories of singularities and
-D-branes in Landau–Ginzburg models,” Math. Sb. 197 (2006), 117–132
-(arXiv:math/0503076). Matrix factorizations of an isolated hypersurface
-singularity go back to Eisenbud 1980.
-
-## What the theorem says
+## Cited theorem used here
 
 Let W be a homogeneous polynomial of degree d on A^{n+1}, X = V(W) ⊂ P^n
-smooth. Write A = C[x0,…,xn]/(W). Then the graded singularity category
-D^{gr}_{sg}(A) is equivalent to the category of graded matrix factorizations
-HMF^{gr}(W) (B-branes in the LG model with superpotential W).
+smooth. Write A = C[x0,...,xn]/(W). The graded singularity category
+D^{gr}_{sg}(A) is equivalent to HMF^{gr}(W). There is a fully faithful
+functor D^{gr}_{sg}(A) → D^b(coh X), which is an equivalence when the
+hypersurface is Calabi-Yau: d = n+1.
 
-Orlov produces a fully faithful functor
+Here n = 5, d = 6, so d = n+1. Hence the statement above.
+Cite: Orlov 2005/2009.
 
-    D^{gr}_{sg}(A)  →  D^b(coh X).
+The identity kernel O_Delta on X × X is not a partner kernel on X × Y.
 
-The functor is an equivalence when the hypersurface is Calabi–Yau:
+## What this work does not say
 
-    d = n+1.
-
-Here n = 5, d = 6, so d = n+1. Hence
-
-    D^b(coh X) ≃ D^{gr}_{sg}(C[x0,…,x5]/(F)) ≃ HMF^{gr}(F).
-
-Same polynomial. Same host. The identity kernel O_Δ on X × X is not a
-partner kernel on X × Y.
-
-## What this is not
-
-- Not a construction of Y ≢̇ X.
-- Not a Fourier–Mukai kernel on a product of two distinct fourfolds.
-- Not Hodge, not ¬Hodge, not Clay.
+- Not a construction of Y not isomorphic to X.
+- Not a Fourier-Mukai kernel on a product of two distinct fourfolds.
+- Not Hodge, not not-Hodge, not Clay.
 - Not Bridgeland Stab(D^b(X)).
-- Authorship of the application note: Benjamin Stanley Frohman, 2026.
-  Authorship of the equivalence: Orlov, 2005/2009.
