@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Conjecture: Fourier–Mukai partner of the locked sextic
 
 Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.

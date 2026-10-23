@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Blowup warning and Hodge trichotomy
 
 Author: Benjamin Stanley Frohman. Apache-2.0.

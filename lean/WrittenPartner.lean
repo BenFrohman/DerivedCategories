@@ -1,8 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman.
-Released under Apache License 2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Type of a written Fourier-Mukai partner of V(F).
 Sorry-free. No axiom. No inhabitant.
 D^b(Y) is this type. It is not filled.

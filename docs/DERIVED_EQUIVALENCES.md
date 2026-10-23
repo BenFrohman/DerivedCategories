@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Derived equivalences (applied to this host)
 
 Author: Benjamin Stanley Frohman. Apache-2.0.

@@ -1,8 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman.
-Released under Apache License 2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Numeral lock of the written intersections on V(F).
 Sorry-free. Not a partner. Not Term B.
 See docs/INTERSECTIONS.md for the geometry.
