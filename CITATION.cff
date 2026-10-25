@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it using the metadata below."
+title: "A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4"
+authors:
+  - family-names: "Frohman"
+    given-names: "Benjamin Stanley"
+    orcid: "https://orcid.org/0009-0006-7068-3718"
+    email: "frohmanbenjamin@gmail.com"
+version: "1.0.0"
+doi: "10.5281/zenodo.23629476"
+date-released: "2026-09-22"
+license: "Apache-2.0"
+repository-code: "https://github.com/BenFrohman/DerivedCategories"
+url: "https://doi.org/10.5281/zenodo.23629476"
