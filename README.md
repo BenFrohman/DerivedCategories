@@ -75,3 +75,10 @@ See [CERTIFICATE.md](CERTIFICATE.md) and the paper in `paper/`.
 
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629475.svg)](https://doi.org/10.5281/zenodo.23629475) A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4 — all versions: [10.5281/zenodo.23629475](https://doi.org/10.5281/zenodo.23629475); latest version: [10.5281/zenodo.23629476](https://doi.org/10.5281/zenodo.23629476)
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867588.svg)](https://doi.org/10.5281/zenodo.23867588) A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4 — all versions: [10.5281/zenodo.23867588](https://doi.org/10.5281/zenodo.23867588); latest version: [10.5281/zenodo.23867589](https://doi.org/10.5281/zenodo.23867589)
+
+
+## Zenodo: Frohman_Locked_Sextic_Numerical_Ledger_Lean_2026
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23942451.svg)](https://doi.org/10.5281/zenodo.23942451)
+
+The paper `paper/Frohman_Locked_Sextic_Numerical_Ledger_Lean_2026.pdf` is archived on Zenodo as https://doi.org/10.5281/zenodo.23942451.
