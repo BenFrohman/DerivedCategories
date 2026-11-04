@@ -1,7 +1,6 @@
 cff-version: 1.2.0
 message: If you use this work, please cite it using the metadata below.
-title: A Machine-Checked Numerical Ledger for the Locked Sextic Fourfold x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6
-  in Lean 4
+title: A Machine-Checked Numerical Ledger for the Locked Sextic Fourfold in P5 in Lean 4
 authors:
 - family-names: Frohman
   given-names: Benjamin Stanley
