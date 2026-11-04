@@ -70,3 +70,8 @@ HODGE `main` is ruleset-locked; this repo is the write target for the residual-s
 ## Verification certificate
 
 See [CERTIFICATE.md](CERTIFICATE.md) and the paper in `paper/`.
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629475.svg)](https://doi.org/10.5281/zenodo.23629475) A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4 — all versions: [10.5281/zenodo.23629475](https://doi.org/10.5281/zenodo.23629475); latest version: [10.5281/zenodo.23629476](https://doi.org/10.5281/zenodo.23629476)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867588.svg)](https://doi.org/10.5281/zenodo.23867588) A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4 — all versions: [10.5281/zenodo.23867588](https://doi.org/10.5281/zenodo.23867588); latest version: [10.5281/zenodo.23867589](https://doi.org/10.5281/zenodo.23867589)
