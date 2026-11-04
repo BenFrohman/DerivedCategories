@@ -66,3 +66,7 @@ Not Hodge. Not Tate. Not Clay. Not a counterexample. Not a fourfold partner.
 
 Sister record: [BenFrohman/HODGE](https://github.com/BenFrohman/HODGE).
 HODGE `main` is ruleset-locked; this repo is the write target for the residual-surface pass.
+
+## Verification certificate
+
+See [CERTIFICATE.md](CERTIFICATE.md) and the paper in `paper/`.

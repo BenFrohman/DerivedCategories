@@ -1,15 +1,14 @@
 {
-  "title": "A Plane on a Sextic Calabi-Yau Fourfold: Residual Quintic Surfaces, Host Ideals, and Determinantal Self-Correction in Lean 4",
+  "title": "A Machine-Checked Numerical Ledger for the Locked Sextic Fourfold in P5 in Lean 4",
   "upload_type": "publication",
   "publication_type": "preprint",
-  "publication_date": "2026-09-22",
-  "version": "1.0.0",
+  "publication_date": "2026-11-04",
+  "version": "v1.1.0",
   "license": "Apache-2.0",
   "doi": "10.5281/zenodo.23629476",
   "creators": [
     {
       "name": "Frohman, Benjamin Stanley",
-      "affiliation": "Independent Researcher",
       "orcid": "0009-0006-7068-3718"
     }
   ],

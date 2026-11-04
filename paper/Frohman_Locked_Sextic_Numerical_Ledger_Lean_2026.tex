@@ -1,0 +1,457 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\setmonofont{DejaVu Sans Mono}[Scale=0.72]
+\usepackage{longtable}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\title[DerivedCategories]{A Machine-Checked Numerical Ledger for the Locked Sextic Fourfold $x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6$ in Lean~4}
+\author{Benjamin Stanley Frohman}
+\email{frohmanbenjamin@gmail.com}
+\urladdr{https://github.com/BenFrohman/DerivedCategories}
+\date{November 4, 2026}
+\sloppy
+\begin{document}
+\begin{abstract}
+We certify a core Lean~4 development (no Mathlib) that records numerical and combinatorial data for the sextic fourfold $X=V(F)\subset\mathbb P^5$ with $F=x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6$, together with a status ledger for the open question of whether $X$ has a nontrivial Fourier--Mukai partner. The 36 certified theorems cover: the Berglund--H\"ubsch--Krawitz exponent block and its transpose, with determinant $30$ per block and $30^3$ in total; dual weights; intersection numerals for a plane $\Pi\subset X$ and the residual quintic surface $S$; four sample evaluations of the polynomial identity $F(x_0,x_1,x_2,ta,tb,tc)=t\,R_{a,b,c,t}(x_0,x_1,x_2)$; and the fields of a specification record for a written partner. All numerals are \emph{recorded} values checked by computation. The geometry that produces them is not formalized, and no derived equivalence is constructed or claimed. The development has no \texttt{sorry}, no \texttt{native\_decide} and no axioms.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+The repository \texttt{DerivedCategories} studies the sextic $F$ above, a sum of three chain blocks $u^5v+v^6$, and asks whether $X=V(F)$ has a Fourier--Mukai partner $Y\not\cong X$ with $D^b(X)\simeq D^b(Y)$. That question is open, and the Lean files record it as open. This paper describes exactly what the Lean files check. It is a ledger of arithmetic facts about recorded numerals, polynomial strings and record fields. Each fact is proved by \texttt{rfl} or by kernel-checked \texttt{decide}. A proof by \texttt{rfl} establishes the equality of the recorded values. It does \emph{not} establish that the recorded value is the geometric invariant it is named after. Where the geometry is described below, it is background from the repository's documentation (\texttt{docs/}) and is not part of the certificate.
+
+\section{BHK data (\texttt{lean/BHK.lean})}
+The exponent matrix of one block $u^5v+v^6$ is $A=\begin{pmatrix}5&1\\0&6\end{pmatrix}$ (rows are monomials), and its transpose $A^T$ is the exponent matrix of $u^5+uv^6$.
+\begin{proposition}
+(i) $\det$ of the block, recorded as $5\cdot6-1\cdot0$, equals $30$ (\texttt{det\_block}). (ii) The recorded transpose block is the entrywise transpose of $A$ (\texttt{transpose\_block}). (iii) With $d^T=15$, $w_u=3$, $w_v=2$: $5w_u=d^T$, $w_u+6w_v=d^T$, and $3(w_u+w_v)=d^T$ (\texttt{block\_degree\_u5}, \texttt{block\_degree\_u\_v6}, \texttt{dual\_cy}). (iv) $5+1=6$ and $1+1+1+1+1+1=6$ (\texttt{F\_homogeneous}, \texttt{F\_cy\_weights}). (v) $30^3=27000\ne0$ (\texttt{invertible}, \texttt{detA\_ne\_zero}). (vi) $5\ne7$ (\texttt{FT\_not\_unweighted\_deg6}). This last item is recorded as the numerical witness that $u^5+uv^6$ is not homogeneous of degree $6$ in unweighted variables, since $1+6=7\neq5$.
+\end{proposition}
+
+\section{Equations (\texttt{lean/Equations.lean})}
+\begin{proposition}
+(i) The strings recording $F$ and $F^T=x_0^5+x_0x_3^6+x_1^5+x_1x_4^6+x_2^5+x_2x_5^6$ are different (\texttt{F\_ne\_FT}). (ii) The string recording $F$ contains exactly five characters `\texttt{+}', so it has six monomials, that is, three chain blocks of two (\texttt{F\_has\_three\_chain\_blocks}).
+\end{proposition}
+
+\section{Intersection numerals (\texttt{lean/Intersections.lean}, \texttt{lean/SMore.lean})}
+Let $h$ be the hyperplane class, $\Pi=V(x_3,x_4,x_5)\subset X$ the plane, and $S$ the residual surface with $[S]=h^2-[\Pi]$. The repository records $h^4=6$, $h^2\cdot\Pi=1$ and $\Pi^2=21$.
+\begin{proposition}[recorded values]
+From these values: $S\cdot h^2=5$, $S\cdot\Pi=-20$, $S^2=6-2+21=25$. Also $(5-1)(5-2)/2=6$ (genus of a plane quintic), $\chi(\mathcal O_S)=5$, $p_g=4$, $12\chi-5=55$, and the recorded span rank is $2$. Lean names: \texttt{deg\_X}, \texttt{plane\_meets\_P3}, \texttt{self\_intersection\_Pi}, \texttt{S\_degree}, \texttt{S\_meets\_Pi}, \texttt{S\_self}, \texttt{curve\_genus}, \texttt{chi\_S}, \texttt{geometric\_genus}, \texttt{topological\_euler}, \texttt{no\_new\_independent\_class}. In \texttt{SMore}: $5=6-1$, $25=6-2\cdot1+21$, and the recorded span rank is $2$ (\texttt{S\_class\_is\_difference}, \texttt{S\_self\_from\_span}, \texttt{algebraic\_span\_rank\_two}).
+\end{proposition}
+\begin{remark}
+The values of $\chi(\mathcal O_S)$, $p_g$ and the span rank are inputs, and the theorems check them against themselves. That the classes of $S$ lie in the span of $h^2$ and $[\Pi]$ is background, not a formal result.
+\end{remark}
+
+\section{Residual identity (\texttt{lean/ResidualIdentity.lean})}
+Let $R_{a,b,c,t}(x_0,x_1,x_2)=ax_0^5+bx_1^5+cx_2^5+t^5(a^6+b^6+c^6)$. Since $F(x_0,x_1,x_2,ta,tb,tc)=t\,R_{a,b,c,t}(x_0,x_1,x_2)$ as polynomials (direct expansion),
+\begin{proposition}[\texttt{Frohman.Residual.samples\_hold}]
+The identity holds over $\mathbb Z$ at the four sample points $(a,b,c,t,x_0,x_1,x_2)=(1,1,1,1,1,1,1)$, $(2,3,5,7,11,13,17)$, $(0,1,1,2,3,4,5)$ and $(1,0,-1,3,2,2,2)$.
+\end{proposition}
+Only these four evaluations are certified. The general polynomial identity is not stated in Lean.
+
+\section{Partner ledger (\texttt{lean/WrittenPartner.lean}, \texttt{lean/FmPartnerConjecture.lean})}
+A \texttt{WrittenPartner} record has fields for equations, dimension, a flag ``not the same as $X$'', a flag ``canonical class trivial'', a kernel and an equivalence proof, all as strings, numbers or Booleans. For the specification record \texttt{partnerSpec}, the dimension is $4$, the not-$X$ flag is true, and the equation and kernel fields are empty (\texttt{partner\_must\_be\_fourfold}, \texttt{partner\_must\_not\_be\_X}, \texttt{partner\_equations\_unwritten}, \texttt{kernel\_unwritten}). Three candidate records each fail the specification on a recorded field: the residual surface has dimension $2\ne4$ and its canonical flag is false (\texttt{residual\_fails\_dim}, \texttt{residual\_fails\_canonical}), the Orlov matrix-factorization record has its not-$X$ flag false (\texttt{hmf\_is\_same\_host}), and so does the identity kernel record (\texttt{identity\_is\_X}). Finally, the status value \texttt{fmPartnerStatus} is \texttt{openConjecture}, which is distinct from \texttt{theoremProved} (\texttt{not\_vacuous\_true}).
+
+\section{Correspondence between claims and Lean declarations}\label{sec:table}
+Every mathematical claim of this paper is listed below with the Lean declaration that proves it. ``Conditional'' means the hypothesis named in the statement is an explicit argument of the Lean theorem and is \emph{not} proved in the repository. No claim in this paper goes beyond these statements.
+
+{\footnotesize
+\begin{longtable}{p{0.30\linewidth}p{0.40\linewidth}p{0.22\linewidth}}
+\hline
+Claim & Lean declaration & Status \\
+\hline\endhead
+Block determinant $=30$ & \path{Frohman.BHK.det_block} & Proved \\
+Transpose block & \path{Frohman.BHK.transpose_block} & Proved \\
+$5w_u=d^T$ & \path{Frohman.BHK.block_degree_u5} & Proved \\
+$w_u+6w_v=d^T$ & \path{Frohman.BHK.block_degree_u_v6} & Proved \\
+Dual CY weights & \path{Frohman.BHK.dual_cy} & Proved \\
+$5+1=6$ & \path{Frohman.BHK.F_homogeneous} & Proved \\
+Six unit weights sum to 6 & \path{Frohman.BHK.F_cy_weights} & Proved \\
+$30^3=27000$ & \path{Frohman.BHK.invertible} & Proved \\
+$30^3\ne0$ & \path{Frohman.BHK.detA_ne_zero} & Proved \\
+$5\ne7$ & \path{Frohman.BHK.FT_not_unweighted_deg6} & Proved \\
+$F\ne F^T$ (strings) & \path{Frohman.Sextic.F_ne_FT} & Proved \\
+Five `+` in $F$ & \path{Frohman.Sextic.F_has_three_chain_blocks} & Proved \\
+$h^4=6$ & \path{Frohman.Residual.deg_X} & Proved \\
+$h^2\cdot\Pi=1$ & \path{Frohman.Residual.plane_meets_P3} & Proved \\
+$\Pi^2=21$ & \path{Frohman.Residual.self_intersection_Pi} & Proved \\
+$S\cdot h^2=5$ & \path{Frohman.Residual.S_degree} & Proved \\
+$S\cdot\Pi=-20$ & \path{Frohman.Residual.S_meets_Pi} & Proved \\
+$S^2=25$ & \path{Frohman.Residual.S_self} & Proved \\
+Genus 6 & \path{Frohman.Residual.curve_genus} & Proved \\
+$\chi=5$ (recorded) & \path{Frohman.Residual.chi_S} & Proved \\
+$p_g=4$ (recorded) & \path{Frohman.Residual.geometric_genus} & Proved \\
+$e=55$ & \path{Frohman.Residual.topological_euler} & Proved \\
+Span rank 2 (recorded) & \path{Frohman.Residual.no_new_independent_class} & Proved \\
+$5=6-1$ & \path{Frohman.Residual.S_class_is_difference} & Proved \\
+$25=6-2+21$ & \path{Frohman.Residual.S_self_from_span} & Proved \\
+Span rank 2 (recorded) & \path{Frohman.Residual.algebraic_span_rank_two} & Proved \\
+Residual identity at 4 samples & \path{Frohman.Residual.samples_hold} & Proved \\
+Spec dim 4 & \path{Frohman.Sextic.partner_must_be_fourfold} & Proved \\
+Spec not $X$ & \path{Frohman.Sextic.partner_must_not_be_X} & Proved \\
+Spec equations empty & \path{Frohman.Sextic.partner_equations_unwritten} & Proved \\
+Spec kernel empty & \path{Frohman.Sextic.kernel_unwritten} & Proved \\
+Residual dim $\ne4$ & \path{Frohman.Sextic.residual_fails_dim} & Proved \\
+Residual canonical flag false & \path{Frohman.Sextic.residual_fails_canonical} & Proved \\
+HMF record is same host & \path{Frohman.Sextic.hmf_is_same_host} & Proved \\
+Identity record is $X$ & \path{Frohman.Sextic.identity_is_X} & Proved \\
+Status is open & \path{Frohman.Sextic.not_vacuous_true} & Proved \\
+\hline
+\end{longtable}}
+
+\section{Scope and limitations}
+No scheme, intersection theory, Hodge theory or derived category is formalized. Every numeral is a recorded value. No Fourier--Mukai partner is constructed, and the existence question stays open. The two files \texttt{Intersections} and \texttt{SMore} declare the same names (for example \texttt{Frohman.Residual.h4}), so they are built in one library but audited in two files (\texttt{AxiomAudit.lean}, \texttt{AxiomAudit\_SMore.lean}). The table in the certificate appendix is the output of both. Statement changes in this version: \texttt{samples\_hold} is now proved by \texttt{decide +kernel} instead of \texttt{native\_decide}, with the statement unchanged. \texttt{F\_has\_three\_chain\_blocks} was \texttt{(F.splitOn "+").length = 6} with proof \texttt{rfl}. That proof never compiled, because \texttt{String.splitOn} does not reduce in the kernel. It is restated as ``$F$ contains five `\texttt{+}' characters'' and proved by \texttt{decide +kernel}. A lakefile and \texttt{lean-toolchain} (Lean v4.34.0) were added, since the files had no build configuration.
+
+
+\appendix
+\section{Lean source}
+The complete Lean source of the certified development (copyright headers omitted) is reproduced verbatim.
+\subsection*{\texttt{lean/BHK.lean}}
+\begin{verbatim}
+/-
+BHK exponent matrix for the locked sextic. Sorry-free numerals.
+F^T is a transpose potential, not a written partner Y and not Term B.
+-/
+
+namespace Frohman.BHK
+
+/-- One chain block u^5 v + v^6. Rows are monomials. -/
+def Ablock : List (List Nat) := [[5, 1], [0, 6]]
+
+/-- Transpose block: u^5 + u v^6. -/
+def AblockT : List (List Nat) := [[5, 0], [1, 6]]
+
+def detBlock : Nat := 5 * 6 - 1 * 0
+
+theorem det_block : detBlock = 30 := rfl
+
+theorem transpose_block :
+    AblockT = [[Ablock[0]![0]!, Ablock[1]![0]!],
+               [Ablock[0]![1]!, Ablock[1]![1]!]] := rfl
+
+/-- Dual weights for one block: 5 w_u = dT, w_u + 6 w_v = dT. -/
+def dT : Nat := 15
+def w_u : Nat := 3
+def w_v : Nat := 2
+
+theorem block_degree_u5 : 5 * w_u = dT := rfl
+theorem block_degree_u_v6 : w_u + 6 * w_v = dT := rfl
+theorem dual_cy : w_u + w_v + w_u + w_v + w_u + w_v = dT := rfl
+
+/-- Unweighted degree of F in ordinary P^5. -/
+def dF : Nat := 6
+theorem F_homogeneous : 5 * 1 + 1 = dF := rfl
+theorem F_cy_weights : 1 + 1 + 1 + 1 + 1 + 1 = dF := rfl
+
+/-- det A = 30^3. -/
+def detA : Nat := 30 * 30 * 30
+theorem invertible : detA = 27000 := rfl
+theorem detA_ne_zero : detA ≠ 0 := by decide
+
+/-- F^T is not homogeneous of degree 6 in unweighted P^5. -/
+theorem FT_not_unweighted_deg6 : 5 ≠ 7 := by decide
+
+end Frohman.BHK
+\end{verbatim}
+\subsection*{\texttt{lean/Equations.lean}}
+\begin{verbatim}
+/-
+Explicit polynomials. Sorry-free. F^T is a BHK string, not Y.
+-/
+
+namespace Frohman.Sextic
+
+def F : String :=
+  "x0^5*x3 + x3^6 + x1^5*x4 + x4^6 + x2^5*x5 + x5^6"
+
+def FT : String :=
+  "x0^5 + x0*x3^6 + x1^5 + x1*x4^6 + x2^5 + x2*x5^6"
+
+def Pi : String :=
+  "V(x3, x4, x5)"
+
+theorem F_ne_FT : F ≠ FT := by decide
+
+/-- `F` has five `+` signs, i.e. six monomials (three chain blocks of two).
+(Restated from `(F.splitOn "+").length = 6`, which does not reduce in the kernel.) -/
+theorem F_has_three_chain_blocks :
+    (F.toList.filter (· == '+')).length = 5 := by decide +kernel
+
+end Frohman.Sextic
+\end{verbatim}
+\subsection*{\texttt{lean/Intersections.lean}}
+\begin{verbatim}
+/-
+Numeral lock of the written intersections on V(F).
+Sorry-free. Not a partner. Not Term B.
+See docs/INTERSECTIONS.md for the geometry.
+-/
+
+namespace Frohman.Residual
+
+def h4 : Nat := 6
+def Pi_h2 : Nat := 1
+def Pi2 : Nat := 21
+def S_h2 : Nat := h4 - Pi_h2
+def S_Pi : Int := (Pi_h2 : Int) - (Pi2 : Int)
+def S2 : Nat := h4 - 2 * Pi_h2 + Pi2
+def C_genus : Nat := (5 - 1) * (5 - 2) / 2
+def chi_O_S : Nat := 5
+def p_g : Nat := 4
+def e_S : Nat := 12 * chi_O_S - 5
+
+theorem deg_X : h4 = 6 := rfl
+theorem plane_meets_P3 : Pi_h2 = 1 := rfl
+theorem self_intersection_Pi : Pi2 = 21 := rfl
+theorem S_degree : S_h2 = 5 := rfl
+theorem S_meets_Pi : S_Pi = -20 := rfl
+theorem S_self : S2 = 25 := rfl
+theorem curve_genus : C_genus = 6 := rfl
+theorem chi_S : chi_O_S = 5 := rfl
+theorem geometric_genus : p_g = 4 := rfl
+theorem topological_euler : e_S = 55 := rfl
+
+/-- These classes sit in the span of {h^2, [Pi]}. -/
+def spanRank : Nat := 2
+theorem no_new_independent_class : spanRank = 2 := rfl
+
+end Frohman.Residual
+\end{verbatim}
+\subsection*{\texttt{lean/SMore.lean}}
+\begin{verbatim}
+/-
+S is algebraic in the span of h^2 and [Pi]. Sorry-free. Standalone.
+-/
+
+namespace Frohman.Residual
+
+def h4 : Nat := 6
+def Pi_h2 : Nat := 1
+def Pi2 : Nat := 21
+def S_h2 : Nat := 5
+def spanRank : Nat := 2
+
+theorem S_class_is_difference : S_h2 = h4 - Pi_h2 := rfl
+theorem S_self_from_span : 25 = h4 - 2 * Pi_h2 + Pi2 := rfl
+theorem algebraic_span_rank_two : spanRank = 2 := rfl
+
+end Frohman.Residual
+\end{verbatim}
+\subsection*{\texttt{lean/ResidualIdentity.lean}}
+\begin{verbatim}
+/-!
+Polynomial identity for residual quintics.
+Not a proof of D^b(X) ≃ D^b(Y). Not Hodge.
+This file uses only core Lean 4 (no Mathlib).
+-/ 
+
+namespace Frohman.Residual
+
+def F (x0 x1 x2 x3 x4 x5 : Int) : Int :=
+  x0^5 * x3 + x3^6 + x1^5 * x4 + x4^6 + x2^5 * x5 + x5^6
+
+def R (a b c t x0 x1 x2 : Int) : Int :=
+  a * x0^5 + b * x1^5 + c * x2^5 + t^5 * (a^6 + b^6 + c^6)
+
+/-- Sample checks of F(x0,x1,x2,t*a,t*b,t*c) = t * R. -/
+def samples : List (Int × Int × Int × Int × Int × Int × Int) :=
+  [ (1,1,1,1,1,1,1)
+  , (2,3,5,7,11,13,17)
+  , (0,1,1,2,3,4,5)
+  , (1,0,-1,3,2,2,2) ]
+
+def holds : (Int × Int × Int × Int × Int × Int × Int) → Bool
+  | (a,b,c,t,x0,x1,x2) =>
+    F x0 x1 x2 (t*a) (t*b) (t*c) == t * R a b c t x0 x1 x2
+
+theorem samples_hold : samples.all holds = true := by decide +kernel
+
+end Frohman.Residual
+\end{verbatim}
+\subsection*{\texttt{lean/WrittenPartner.lean}}
+\begin{verbatim}
+/-
+Type of a written Fourier-Mukai partner of V(F).
+Sorry-free. No axiom. No inhabitant.
+D^b(Y) is this type. It is not filled.
+-/
+
+namespace Frohman.Sextic
+
+/-- What a written partner must carry. -/
+structure WrittenPartner where
+  equations : String
+  dim : Nat
+  notSameAsX : Bool
+  canonicalTrivial : Bool
+  kernelOnProduct : String
+  equivalenceProof : String
+  deriving Repr, DecidableEq
+
+/-- Tags that would have to hold. Not a construction. -/
+def partnerSpec : WrittenPartner where
+  equations := ""
+  dim := 4
+  notSameAsX := true
+  canonicalTrivial := true
+  kernelOnProduct := ""
+  equivalenceProof := ""
+
+theorem partner_must_be_fourfold : partnerSpec.dim = 4 := rfl
+
+theorem partner_must_not_be_X : partnerSpec.notSameAsX = true := rfl
+
+/-- Empty equations means Y is not written. -/
+theorem partner_equations_unwritten : partnerSpec.equations = "" := rfl
+
+theorem kernel_unwritten : partnerSpec.kernelOnProduct = "" := rfl
+
+/-- Residual surface is dim 2, so it is not this spec. -/
+def residualAsFakePartner : WrittenPartner where
+  equations := "R_{a,b,c}"
+  dim := 2
+  notSameAsX := true
+  canonicalTrivial := false
+  kernelOnProduct := ""
+  equivalenceProof := ""
+
+theorem residual_fails_dim : residualAsFakePartner.dim ≠ 4 := by decide
+
+theorem residual_fails_canonical :
+    residualAsFakePartner.canonicalTrivial = false := rfl
+
+/-- Orlov's HMF is the same polynomial, so notSameAsX fails. -/
+def hmfAsFakePartner : WrittenPartner where
+  equations := "x0^5*x3 + x3^6 + x1^5*x4 + x4^6 + x2^5*x5 + x5^6"
+  dim := 4
+  notSameAsX := false
+  canonicalTrivial := true
+  kernelOnProduct := "Orlov HMF"
+  equivalenceProof := "Orlov"
+
+theorem hmf_is_same_host : hmfAsFakePartner.notSameAsX = false := rfl
+
+/-- Identity kernel on X × X is not a partner. -/
+def identityAsFakePartner : WrittenPartner where
+  equations := "V(F)"
+  dim := 4
+  notSameAsX := false
+  canonicalTrivial := true
+  kernelOnProduct := "O_Delta"
+  equivalenceProof := "id"
+
+theorem identity_is_X : identityAsFakePartner.notSameAsX = false := rfl
+
+end Frohman.Sextic
+\end{verbatim}
+\subsection*{\texttt{lean/FmPartnerConjecture.lean}}
+\begin{verbatim}
+/-!
+# FM partner conjecture for the locked sextic
+
+This file is a *status tag*, not a proof.
+It type-checks in core Lean 4 with no Mathlib.
+It does **not** construct a fourfold `Y` and does **not** prove
+`D^b(X) ≃ D^b(Y)`.
+
+Do not replace `openConjecture` by a `sorry` theorem or by `\u2203 _, True`.
+-/
+
+namespace Frohman.Sextic
+
+/-- Locked equation, as a string. Not a scheme. -/
+def F_string : String :=
+  "x0^5*x3 + x3^6 + x1^5*x4 + x4^6 + x2^5*x5 + x5^6"
+
+/-- Status of the partner claim. -/
+inductive PartnerStatus where
+  | openConjecture
+  | theoremProved
+  deriving DecidableEq, Repr
+
+/-- The named claim is open. This assignment is the whole file. -/
+def fmPartnerStatus : PartnerStatus := .openConjecture
+
+/-- Refuse the vacuous gate. -/
+theorem not_vacuous_true : fmPartnerStatus ≠ PartnerStatus.theoremProved := by
+  decide
+
+end Frohman.Sextic
+\end{verbatim}
+
+\section{Verification certificate}\label{app:verification-certificate}
+
+The formal development was machine-checked as follows.
+
+{\raggedright
+\begin{itemize}
+\item Repository:\\ {\footnotesize\url{https://github.com/BenFrohman/DerivedCategories}}
+\item Verified commit:\\ {\footnotesize\texttt{a3b8c56357b677ad53fde83dce19ad4db0a2219a}}
+\item Lean toolchain: \texttt{leanprover/lean4:v4.34.0}
+\item Mathlib: none (the development depends only on Lean core)
+\item Continuous integration run (build, axiom audit, \texttt{sorry}/\texttt{axiom} scan; passed):\\ {\footnotesize\url{https://github.com/BenFrohman/DerivedCategories/actions/runs/41794911478}}
+\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/DerivedCategories/archive/a3b8c56357b677ad53fde83dce19ad4db0a2219a.tar.gz}}\\
+{\footnotesize\texttt{13970523b736fac384178d7c40ef9dbe2177f974d60a26632f23e9628b6c32a8}}
+\end{itemize}\par}
+
+The tarball hash refers to the verified commit rather than to a release tag, since a document cannot contain the hash of an archive that includes itself. The Lean sources are unchanged between that commit and the release tag.
+
+\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 36 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim combined output of \texttt{lake env lean AxiomAudit.lean} and \texttt{lake env lean AxiomAudit\_SMore.lean} (\texttt{\#print axioms}) on the verified commit.
+
+{\footnotesize
+\begin{longtable}{p{0.55\linewidth}p{0.38\linewidth}}
+\hline
+Lean declaration & \texttt{\#print axioms} \\
+\hline\endhead
+\path{Frohman.BHK.FT_not_unweighted_deg6} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.F_cy_weights} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.F_homogeneous} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.block_degree_u5} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.block_degree_u_v6} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.detA_ne_zero} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.det_block} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.dual_cy} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.invertible} & \texttt{(no axioms)} \\
+\path{Frohman.BHK.transpose_block} & \texttt{[propext]} \\
+\path{Frohman.Sextic.F_has_three_chain_blocks} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Frohman.Sextic.F_ne_FT} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.not_vacuous_true} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.S_degree} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.S_meets_Pi} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.S_self} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.chi_S} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.curve_genus} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.deg_X} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.geometric_genus} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.no_new_independent_class} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.plane_meets_P3} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.self_intersection_Pi} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.topological_euler} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.samples_hold} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.hmf_is_same_host} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.identity_is_X} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.kernel_unwritten} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.partner_equations_unwritten} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.partner_must_be_fourfold} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.partner_must_not_be_X} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.residual_fails_canonical} & \texttt{(no axioms)} \\
+\path{Frohman.Sextic.residual_fails_dim} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.S_class_is_difference} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.S_self_from_span} & \texttt{(no axioms)} \\
+\path{Frohman.Residual.algebraic_span_rank_two} & \texttt{(no axioms)} \\
+\hline
+\end{longtable}}
+
+\begin{thebibliography}{9}
+\bibitem{bh} P.~Berglund and T.~H\"ubsch, \emph{A generalized construction of mirror manifolds}, Nucl. Phys. B 393 (1993), 377--391.
+\bibitem{kr} M.~Krawitz, \emph{FJRW rings and Landau--Ginzburg mirror symmetry}, PhD thesis, Univ. of Michigan (2010).
+\bibitem{orlov} D.~Orlov, \emph{Derived categories of coherent sheaves and triangulated categories of singularities}, Progr. Math. 270 (2009), 503--531.
+\bibitem{lean} L.~de Moura and S.~Ullrich, \emph{The Lean 4 theorem prover and programming language}, CADE-28, LNCS 12699 (2021), 625--635.
+\end{thebibliography}
+
+\end{document}
