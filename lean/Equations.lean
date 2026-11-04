@@ -20,7 +20,9 @@ def Pi : String :=
 
 theorem F_ne_FT : F ≠ FT := by decide
 
+/-- `F` has five `+` signs, i.e. six monomials (three chain blocks of two).
+(Restated from `(F.splitOn "+").length = 6`, which does not reduce in the kernel.) -/
 theorem F_has_three_chain_blocks :
-    (F.splitOn "+").length = 6 := rfl
+    (F.toList.filter (· == '+')).length = 5 := by decide +kernel
 
 end Frohman.Sextic

@@ -1,5 +1,8 @@
 # DerivedCategories
 
+[![Lean certificate](https://github.com/BenFrohman/DerivedCategories/actions/workflows/certify.yml/badge.svg)](https://github.com/BenFrohman/DerivedCategories/actions/workflows/certify.yml)
+[![Lean 4](https://github.com/BenFrohman/DerivedCategories/actions/workflows/lean.yml/badge.svg)](https://github.com/BenFrohman/DerivedCategories/actions/workflows/lean.yml)
+
 [![release.yml](https://github.com/BenFrohman/DerivedCategories/actions/workflows/release.yml/badge.svg)](https://github.com/BenFrohman/DerivedCategories/actions/workflows/release.yml)
 
 <!-- ZENODO-PROVENANCE-HEADER -->

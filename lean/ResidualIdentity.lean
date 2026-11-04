@@ -28,6 +28,6 @@ def holds : (Int × Int × Int × Int × Int × Int × Int) → Bool
   | (a,b,c,t,x0,x1,x2) =>
     F x0 x1 x2 (t*a) (t*b) (t*c) == t * R a b c t x0 x1 x2
 
-theorem samples_hold : samples.all holds = true := by native_decide
+theorem samples_hold : samples.all holds = true := by decide +kernel
 
 end Frohman.Residual
