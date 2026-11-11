@@ -4,6 +4,7 @@ title: A Machine-Checked Numerical Ledger for the Locked Sextic Fourfold in P5 i
 authors:
 - family-names: Frohman
   given-names: Benjamin Stanley
+  alias: "B.S. Frohman"
   email: frohmanbenjamin@gmail.com
   orcid: https://orcid.org/0009-0006-7068-3718
 version: v1.1.0
