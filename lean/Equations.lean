@@ -3,8 +3,15 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Explicit polynomials. Sorry-free. F^T is a BHK string, not Y.
+-/
+
+/-!
+# lean.Equations
+
+Machine-checked Lean 4 module.
 -/
 
 namespace Frohman.Sextic
