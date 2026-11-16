@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 -- Axiom audit (all modules except SMore, which shares names with Intersections; see AxiomAudit_SMore.lean).
 import BHK
 import Equations
@@ -5,6 +11,12 @@ import FmPartnerConjecture
 import Intersections
 import ResidualIdentity
 import WrittenPartner
+
+/-!
+# AxiomAudit
+
+Machine-checked Lean 4 module.
+-/
 
 #print axioms Frohman.BHK.FT_not_unweighted_deg6
 #print axioms Frohman.BHK.F_cy_weights
