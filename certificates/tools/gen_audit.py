@@ -18,9 +18,12 @@ for dp, _, fs in os.walk(root):
             mods.append(rel.replace(os.sep, '.'))
 mods.sort()
 open(modlist, 'w').write('\n'.join(mods) + '\n')
-names = ', '.join('`' + '.'.join('«' + p + '»' for p in m.split('.')) for m in mods)
-imports = '\n'.join('import ' + '.'.join('«' + p + '»' for p in m.split('.')) for m in mods)
-open(out, 'w').write(f"""import Lean
+split = len(sys.argv) > 3 and sys.argv[3] == 'split'
+def q(m): return '.'.join('«' + p + '»' for p in m.split('.'))
+def write(path, ms):
+    names = ', '.join('`' + q(m) for m in ms)
+    imports = '\n'.join('import ' + q(m) for m in ms)
+    open(path, 'w').write(f"""import Lean
 {imports}
 
 open Lean Elab Command
@@ -45,4 +48,9 @@ elab "#kernel_certificate_audit" : command => do
 
 #kernel_certificate_audit
 """)
-print(f'{len(mods)} modules')
+if split:
+    for k, m in enumerate(mods):
+        write(out[:-5] + f'_{k:03d}.lean', [m])
+else:
+    write(out, mods)
+print(f'{len(mods)} modules' + (' (one audit file per module)' if split else ''))

@@ -45,7 +45,13 @@ jobs:
         run: |
           set -o pipefail
           python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt
-          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
+          if ! lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2> cert-out/axioms.stderr.txt; then
+            cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt
+            echo "Importing all modules in one file failed (two modules declare the same name); auditing one module per file." | tee cert-out/axioms.note.txt
+            python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt split
+            : > cert-out/axioms.raw.txt
+            for f in cert-out/KernelCertificateAudit_*.lean; do lake env lean "$f" >> cert-out/axioms.raw.txt 2>> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }; done
+          fi
           python3 certificates/tools/check_audit.py cert-out/axioms.raw.txt > cert-out/axioms.txt || { tail -50 cert-out/axioms.txt; exit 1; }
           tail -1 cert-out/axioms.txt
       - name: External kernel re-check of every module (leanchecker / lean4checker, one module per run)
