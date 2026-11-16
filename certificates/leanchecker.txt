@@ -1,0 +1,13 @@
+checker: leanchecker source shipped with v4.34.0 (src/lean/LeanChecker.lean), prefix match -> exact match, run with lean --run
+  patch: 93c93
+  patch: <         if !fresh && target.isPrefixOf m || target == m then
+  patch: ---
+  patch: >         if !fresh && target == m || target == m then
+BHK: OK (1 module replayed)
+Equations: OK (1 module replayed)
+FmPartnerConjecture: OK (1 module replayed)
+Intersections: OK (1 module replayed)
+ResidualIdentity: OK (1 module replayed)
+SMore: OK (1 module replayed)
+WrittenPartner: OK (1 module replayed)
+RESULT: 7 of 7 modules replayed through the kernel, 0 failures
