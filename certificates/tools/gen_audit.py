@@ -5,14 +5,17 @@ declared in them.  Usage: python3 certificates/tools/gen_audit.py OUT.lean MODUL
 import os, subprocess, sys
 out, modlist = sys.argv[1], sys.argv[2]
 files = subprocess.check_output(['git', 'ls-files', '*.lean']).decode().split()
-roots = [next(r for r in ['.lake/build/lib/lean', '.lake/build/lib', 'build/lib'] if os.path.isdir(r))]
+root = next(r for r in ['.lake/build/lib/lean', '.lake/build/lib', 'build/lib'] if os.path.isdir(r))
+tracked = set(f[:-5] for f in files if not f.startswith(('.lake/', 'lake-packages/')))
 mods = []
-for f in files:
-    if f.startswith(('.lake/', 'lake-packages/')) or os.path.basename(f) in ('lakefile.lean',):
-        continue
-    rel = f[:-5]
-    if any(os.path.exists(os.path.join(r, rel + '.olean')) for r in roots):
-        mods.append(rel.replace('/', '.'))
+for dp, _, fs in os.walk(root):
+    for fn in fs:
+        if not fn.endswith('.olean') or fn.count('.') != 1:
+            continue
+        rel = os.path.relpath(os.path.join(dp, fn), root)[:-6]
+        # keep modules whose source file is tracked in this repository (possibly under a srcDir)
+        if any(t == rel or t.endswith('/' + rel) for t in tracked):
+            mods.append(rel.replace(os.sep, '.'))
 mods.sort()
 open(modlist, 'w').write('\n'.join(mods) + '\n')
 names = ', '.join('`' + '.'.join('«' + p + '»' for p in m.split('.')) for m in mods)
