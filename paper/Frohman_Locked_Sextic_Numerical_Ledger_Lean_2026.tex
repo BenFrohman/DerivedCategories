@@ -1,3 +1,5 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman
+% Licensed under the Apache License 2.0
 \documentclass[11pt]{amsart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amssymb}
@@ -25,6 +27,8 @@
 We certify a core Lean~4 development (no Mathlib) that records numerical and combinatorial data for the sextic fourfold $X=V(F)\subset\mathbb P^5$ with $F=x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6$, together with a status ledger for the open question of whether $X$ has a nontrivial Fourier--Mukai partner. The 36 certified theorems cover: the Berglund--H\"ubsch--Krawitz exponent block and its transpose, with determinant $30$ per block and $30^3$ in total; dual weights; intersection numerals for a plane $\Pi\subset X$ and the residual quintic surface $S$; four sample evaluations of the polynomial identity $F(x_0,x_1,x_2,ta,tb,tc)=t\,R_{a,b,c,t}(x_0,x_1,x_2)$; and the fields of a specification record for a written partner. All numerals are \emph{recorded} values checked by computation. The geometry that produces them is not formalized, and no derived equivalence is constructed or claimed. The development has no \texttt{sorry}, no \texttt{native\_decide} and no axioms.
 \end{abstract}
 \maketitle
+\noindent{\small Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License 2.0.}\par
+
 
 \section{Introduction}
 The repository \texttt{DerivedCategories} studies the sextic $F$ above, a sum of three chain blocks $u^5v+v^6$, and asks whether $X=V(F)$ has a Fourier--Mukai partner $Y\not\cong X$ with $D^b(X)\simeq D^b(Y)$. That question is open, and the Lean files record it as open. This paper describes exactly what the Lean files check. It is a ledger of arithmetic facts about recorded numerals, polynomial strings and record fields. Each fact is proved by \texttt{rfl} or by kernel-checked \texttt{decide}. A proof by \texttt{rfl} establishes the equality of the recorded values. It does \emph{not} establish that the recorded value is the geometric invariant it is named after. Where the geometry is described below, it is background from the repository's documentation (\texttt{docs/}) and is not part of the certificate.
