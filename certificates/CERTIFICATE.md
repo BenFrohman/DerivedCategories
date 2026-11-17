@@ -5,13 +5,13 @@ This file records a reproducible machine check of the Lean 4 development in this
 | Item | Value |
 |---|---|
 | Repository | https://github.com/BenFrohman/DerivedCategories |
-| Certified commit | `f2c15434b722144cd5edcf15d023a663f1ae50b8` (branch `chore/kernel-certificate`) |
-| Lean sources | identical to `main` at `b0bb1646c0f936485cd2444ebb28607638eb9ca7`: no `.lean`, lakefile, manifest or toolchain file differs; the certified commit only adds CI and the scripts in `certificates/tools/` |
+| Certified commit | `e6c1e585ccef61023088d7ad0851a43675f56ef0` (branch `main`) |
+| Lean sources | the certified commit is the `main` head itself; the certificate files were committed afterwards in a commit that changes no `.lean`, lakefile, manifest or toolchain file |
 | lean-toolchain | `leanprover/lean4:v4.34.0` |
 | Lean | Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release) |
 | Mathlib | none (no Mathlib dependency) |
-| Date (UTC) | 2026-11-16T19:52:26Z |
-| CI run | https://github.com/BenFrohman/DerivedCategories/actions/runs/43943411785 |
+| Date (UTC) | 2026-11-16T20:49:07Z |
+| CI run | https://github.com/BenFrohman/DerivedCategories/actions/runs/43953535475 |
 | `lake build` | `Build completed successfully (9 jobs).` ([build.log](build.log)) |
 | sorry / admit / native_decide / axiom scan | `RESULT: 0 hits` ([sorry-scan.txt](sorry-scan.txt)) |
 | `#print axioms` | `AUDIT PASS: 42 theorems in 7 modules depend only on propext, Classical.choice, Quot.sound (or on no axioms)` ([axioms.txt](axioms.txt)) |
@@ -78,5 +78,5 @@ Full `#print axioms` output (verbatim from `axioms.txt`):
 ## Rebuild
 
 ```
-git clone https://github.com/BenFrohman/DerivedCategories.git && cd DerivedCategories && git checkout f2c15434b722144cd5edcf15d023a663f1ae50b8 && lake build && python3 certificates/tools/sorry_scan.py && python3 certificates/tools/gen_audit.py /tmp/KernelCertificateAudit.lean /tmp/modules.txt && lake env lean /tmp/KernelCertificateAudit.lean > /tmp/axioms.raw.txt && python3 certificates/tools/check_audit.py /tmp/axioms.raw.txt | tail -n 1
+git clone https://github.com/BenFrohman/DerivedCategories.git && cd DerivedCategories && git checkout e6c1e585ccef61023088d7ad0851a43675f56ef0 && lake build && python3 certificates/tools/sorry_scan.py && python3 certificates/tools/gen_audit.py /tmp/KernelCertificateAudit.lean /tmp/modules.txt && lake env lean /tmp/KernelCertificateAudit.lean > /tmp/axioms.raw.txt && python3 certificates/tools/check_audit.py /tmp/axioms.raw.txt | tail -n 1
 ```
